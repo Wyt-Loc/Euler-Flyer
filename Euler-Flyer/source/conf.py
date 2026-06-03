@@ -123,9 +123,9 @@ html_theme_options = {
 
     "icon_links": [
         {
-            "name": "Gitee",
-            "url": "https://gitee.com/wyt-loc",
-            "icon": "fab fa-gitee",
+            "name": "GitHub",
+            "url": "https://github.com/Wyt-Loc",
+            "icon": "fab fa-github",
             "type": "fontawesome",
         },
     ],
