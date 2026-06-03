@@ -68,8 +68,8 @@ language = 'zh_CN'
 
 html_theme = "pydata_sphinx_theme"
 
-# Logo
-html_logo = "_static/logo.png"
+# Logo（SVG 用于导航栏，PNG 用于 OpenGraph 等）
+html_logo = "_static/logo.svg"
 
 # favicon
 html_favicon = "_static/favicon.ico"
@@ -114,17 +114,19 @@ html_theme_options = {
     # -------------------------------------------------
 
     "logo": {
+        "image_light": "_static/logo.svg",
+        "image_dark": "_static/logo.svg",
         "text": "Euler Flyer",
     },
 
     # -------------------------------------------------
-    # GitHub
+    # GitHub（项目仓库，勿使用 Gitee）
     # -------------------------------------------------
 
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/Wyt-Loc",
+            "url": "https://github.com/Wyt-Loc/Euler-Flyer",
             "icon": "fab fa-github",
             "type": "fontawesome",
         },

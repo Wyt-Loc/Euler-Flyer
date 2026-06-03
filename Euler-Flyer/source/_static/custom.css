@@ -1,0 +1,6 @@
+/* Euler Flyer 主题微调 */
+.navbar-brand img,
+.bd-header-article .navbar-brand img {
+  height: 2rem;
+  width: auto;
+}
