@@ -4,3 +4,25 @@
   height: 2rem;
   width: auto;
 }
+
+/* 页脚元信息：字数 / 阅读时间 / 访问统计 */
+.euler-page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--pst-color-border, rgba(128, 128, 128, 0.25));
+  font-size: 0.875rem;
+  color: var(--pst-color-text-muted, #6c757d);
+}
+
+.euler-page-meta__sep {
+  opacity: 0.5;
+  user-select: none;
+}
+
+.euler-page-meta__item {
+  white-space: nowrap;
+}

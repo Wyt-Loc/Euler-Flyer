@@ -38,6 +38,9 @@ extensions = [
 
     # 代码复制按钮
     'sphinx_copybutton',
+
+    # 页脚字数 / 阅读时间
+    '_ext.page_meta',
 ]
 
 # TODO 显示
@@ -82,9 +85,13 @@ html_css_files = [
     'custom.css',
 ]
 
-# 自定义 JS
+# 自定义 JS（不蒜子访问统计）
 html_js_files = [
     'custom.js',
+    (
+        'https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js',
+        {'defer': 'defer'},
+    ),
 ]
 
 # ---------------------------------------------------------
@@ -153,6 +160,7 @@ html_theme_options = {
     # Footer
     # -------------------------------------------------
 
+    "content_footer_items": ["page-meta"],
     "footer_start": ["copyright"],
     "footer_end": [],
 
