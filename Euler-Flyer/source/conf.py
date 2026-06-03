@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # Project information
 # ---------------------------------------------------------
 
-project = 'BurshCode'
+project = 'Euler Flyer'
 copyright = '2026'
 author = 'wyt'
 release = '1.0.0'
@@ -32,7 +32,7 @@ extensions = [
 
     # Markdown 支持
     'myst_parser',
-
+    'sphinx.ext.mathjax',
     # UI增强
     'sphinx_design',
 
@@ -114,7 +114,7 @@ html_theme_options = {
     # -------------------------------------------------
 
     "logo": {
-        "text": "BurshCode",
+        "text": "Euler Flyer",
     },
 
     # -------------------------------------------------
@@ -231,7 +231,7 @@ rst_prolog = """
 # HTML title
 # ---------------------------------------------------------
 
-html_title = "Ardupilot Technical Docs"
+html_title = "Euler Flyer"
 
 # ---------------------------------------------------------
 # HTML context
