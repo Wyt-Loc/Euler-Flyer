@@ -14,11 +14,6 @@
      <canvas id="bc-field" aria-hidden="true"></canvas>
      <div class="bc-grain" aria-hidden="true"></div>
 
-     <button class="bc-sound-toggle" type="button" aria-pressed="false" aria-label="开启环境音">
-       <span class="bc-sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-       <span>Sound</span>
-     </button>
-
      <header class="bc-header">
        <a class="bc-brand" href="#top" aria-label="Euler Flyer home">
          <span class="bc-brand-mark"></span>
@@ -48,11 +43,11 @@
 
          <aside class="bc-orbit" aria-label="文档状态">
            <div class="bc-orbit-ring">
-             <div class="bc-orbit-core">
-               <span>Docs</span>
+             <button class="bc-orbit-core bc-sound-toggle" type="button" aria-pressed="false" aria-label="开启环境音">
+               <span class="bc-disc-label">Sound</span>
                <strong>07</strong>
-               <span>modules</span>
-             </div>
+               <span class="bc-sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+             </button>
            </div>
            <p>从本地编译环境到仿真验证，把项目推进中的关键路径整理成可复现手册。</p>
          </aside>

@@ -1,4 +1,194 @@
 /* Euler Flyer 主题微调 */
+:root {
+  --ef-bg: #030406;
+  --ef-panel: rgba(12, 16, 22, 0.78);
+  --ef-panel-strong: rgba(18, 23, 32, 0.9);
+  --ef-line: rgba(226, 238, 255, 0.16);
+  --ef-text: #eef5ff;
+  --ef-muted: rgba(229, 239, 255, 0.66);
+  --ef-dim: rgba(229, 239, 255, 0.42);
+  --ef-aqua: #68f2ff;
+  --ef-lime: #d6ff6f;
+  --ef-coral: #ff785d;
+}
+
+html[data-theme="dark"] {
+  --pst-color-background: var(--ef-bg);
+  --pst-color-on-background: var(--ef-panel);
+  --pst-color-surface: var(--ef-panel-strong);
+  --pst-color-on-surface: var(--ef-panel);
+  --pst-color-text-base: var(--ef-text);
+  --pst-color-text-muted: var(--ef-muted);
+  --pst-color-border: var(--ef-line);
+  --pst-color-link: var(--ef-aqua);
+  --pst-color-link-hover: var(--ef-lime);
+  --pst-color-primary: var(--ef-aqua);
+  --pst-color-secondary: var(--ef-lime);
+  color-scheme: dark;
+}
+
+html[data-theme="dark"]:not(.bc-home-page) body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(104, 242, 255, 0.12), transparent 30rem),
+    radial-gradient(circle at 88% 8%, rgba(255, 120, 93, 0.1), transparent 26rem),
+    radial-gradient(circle at 55% 92%, rgba(214, 255, 111, 0.07), transparent 34rem),
+    var(--ef-bg);
+  color: var(--ef-text);
+}
+
+html[data-theme="dark"]:not(.bc-home-page) .bd-page-width,
+html[data-theme="dark"]:not(.bc-home-page) .bd-container,
+html[data-theme="dark"]:not(.bc-home-page) .bd-container__inner,
+html[data-theme="dark"]:not(.bc-home-page) .bd-main,
+html[data-theme="dark"]:not(.bc-home-page) .bd-content,
+html[data-theme="dark"]:not(.bc-home-page) .bd-article-container {
+  background: transparent !important;
+}
+
+html[data-theme="dark"]:not(.bc-home-page) body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.ef-ambient-field {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0.78;
+}
+
+html[data-theme="dark"] .bd-header {
+  position: sticky;
+  z-index: 20;
+  border-bottom: 1px solid var(--ef-line);
+  background: rgba(5, 7, 10, 0.72) !important;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(18px);
+}
+
+html[data-theme="dark"] .bd-sidebar-primary,
+html[data-theme="dark"] .bd-sidebar-secondary {
+  position: sticky;
+  z-index: 5;
+  border-color: var(--ef-line);
+  background: transparent !important;
+  backdrop-filter: none;
+}
+
+html[data-theme="dark"] .bd-sidebar-primary::before,
+html[data-theme="dark"] .bd-sidebar-secondary::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, rgba(3, 4, 6, 0.36), transparent 78%);
+}
+
+html[data-theme="dark"] .bd-sidebar-secondary::before {
+  background: linear-gradient(270deg, rgba(3, 4, 6, 0.28), transparent 78%);
+}
+
+html[data-theme="dark"] .bd-article-container {
+  position: relative;
+  z-index: 2;
+}
+
+html[data-theme="dark"] article.bd-article {
+  border: 1px solid var(--ef-line);
+  border-radius: 8px;
+  margin: 1.25rem 0 2.5rem;
+  padding: clamp(1.1rem, 2.6vw, 2.4rem);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(104, 242, 255, 0.06), transparent 18rem),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+    rgba(10, 14, 20, 0.94);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+html[data-theme="dark"] article.bd-article h1,
+html[data-theme="dark"] article.bd-article h2,
+html[data-theme="dark"] article.bd-article h3 {
+  color: var(--ef-text);
+  letter-spacing: 0;
+}
+
+html[data-theme="dark"] article.bd-article h1 {
+  border-bottom: 1px solid var(--ef-line);
+  padding-bottom: 0.65rem;
+}
+
+html[data-theme="dark"] article.bd-article h2 {
+  border-bottom: 1px solid rgba(226, 238, 255, 0.1);
+  padding-bottom: 0.45rem;
+}
+
+html[data-theme="dark"] article.bd-article p,
+html[data-theme="dark"] article.bd-article li,
+html[data-theme="dark"] article.bd-article dd {
+  color: var(--ef-muted);
+}
+
+html[data-theme="dark"] .toctree-wrapper,
+html[data-theme="dark"] .admonition,
+html[data-theme="dark"] .sd-card,
+html[data-theme="dark"] .prev-next-area a {
+  border: 1px solid var(--ef-line);
+  border-radius: 8px;
+  background: rgba(18, 23, 32, 0.72);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+}
+
+html[data-theme="dark"] .toctree-wrapper {
+  padding: 1rem 1.2rem;
+}
+
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] div[class^="highlight-"] {
+  border: 1px solid rgba(104, 242, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(2, 4, 7, 0.78);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .highlight pre {
+  background: transparent;
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link,
+html[data-theme="dark"] .bd-links .nav-link {
+  border-radius: 999px;
+  color: var(--ef-muted);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.72);
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link:hover,
+html[data-theme="dark"] .toc-entry a.nav-link.active,
+html[data-theme="dark"] .bd-links .nav-link:hover,
+html[data-theme="dark"] .bd-links .nav-link.active {
+  background: rgba(104, 242, 255, 0.08);
+  color: var(--ef-text);
+}
+
+html[data-theme="dark"] .navbar-brand,
+html[data-theme="dark"] .navbar-nav .nav-link,
+html[data-theme="dark"] .navbar-icon-links a {
+  color: var(--ef-text) !important;
+}
+
 .navbar-brand img,
 .bd-header-article .navbar-brand img {
   height: 2rem;
