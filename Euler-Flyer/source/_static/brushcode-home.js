@@ -8,6 +8,7 @@
   const ctx = canvas.getContext("2d");
   const pointer = { x: 0.5, y: 0.45, active: false };
   const particles = [];
+  const ships = [];
   const filmFrames = [...document.querySelectorAll(".bc-frame")];
   let width = 0;
   let height = 0;
@@ -16,6 +17,7 @@
   let scrollProgress = 0;
   let audioContext;
   let audioMaster;
+  let nextShipFrame = 80;
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -106,6 +108,109 @@
     }
   }
 
+  function scheduleNextShip() {
+    nextShipFrame = frame + 430 + Math.floor(Math.random() * 520);
+  }
+
+  function spawnShip() {
+    const fromLeft = Math.random() > 0.5;
+    const y = height * (0.16 + Math.random() * 0.58);
+    const diagonal = (Math.random() - 0.5) * height * 0.38;
+    const startX = fromLeft ? -140 : width + 140;
+    const endX = fromLeft ? width + 160 : -160;
+    const startY = y;
+    const endY = y + diagonal;
+    const angle = Math.atan2(endY - startY, endX - startX);
+    const scale = 0.82 + Math.random() * 0.42;
+
+    ships.push({
+      x: startX,
+      y: startY,
+      vx: Math.cos(angle) * (2.35 + Math.random() * 1.05),
+      vy: Math.sin(angle) * (2.35 + Math.random() * 1.05),
+      angle,
+      scale,
+      life: 0,
+      maxLife: 460,
+      alpha: 0,
+    });
+  }
+
+  function drawShip(ship) {
+    const speedFade = Math.min(1, ship.life / 36) * Math.min(1, (ship.maxLife - ship.life) / 48);
+    ship.alpha = speedFade * 0.88;
+
+    ctx.save();
+    ctx.translate(ship.x, ship.y);
+    ctx.rotate(ship.angle);
+    ctx.scale(ship.scale, ship.scale);
+    ctx.globalAlpha = ship.alpha;
+
+    const trail = ctx.createLinearGradient(-120, 0, 22, 0);
+    trail.addColorStop(0, "rgba(104, 242, 255, 0)");
+    trail.addColorStop(0.5, "rgba(104, 242, 255, 0.14)");
+    trail.addColorStop(1, "rgba(104, 242, 255, 0.56)");
+    ctx.fillStyle = trail;
+    ctx.beginPath();
+    ctx.moveTo(-118, -7);
+    ctx.lineTo(-14, -3);
+    ctx.lineTo(-14, 3);
+    ctx.lineTo(-118, 7);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowColor = "rgba(104, 242, 255, 0.72)";
+    ctx.shadowBlur = 18;
+    ctx.fillStyle = "rgba(104, 242, 255, 0.85)";
+    ctx.beginPath();
+    ctx.ellipse(-16, 0, 8, 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = "rgba(238, 245, 255, 0.92)";
+    ctx.beginPath();
+    ctx.moveTo(38, 0);
+    ctx.lineTo(-18, -14);
+    ctx.lineTo(-4, -4);
+    ctx.lineTo(-36, 0);
+    ctx.lineTo(-4, 4);
+    ctx.lineTo(-18, 14);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowBlur = 6;
+    ctx.fillStyle = "rgba(255, 120, 93, 0.9)";
+    ctx.beginPath();
+    ctx.ellipse(14, 0, 5, 2.4, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function drawShips() {
+    if (frame >= nextShipFrame && ships.length < 2) {
+      spawnShip();
+      scheduleNextShip();
+    }
+
+    for (let i = ships.length - 1; i >= 0; i -= 1) {
+      const ship = ships[i];
+      ship.life += 1;
+      ship.x += ship.vx;
+      ship.y += ship.vy;
+      drawShip(ship);
+
+      const outside =
+        ship.x < -220 ||
+        ship.x > width + 220 ||
+        ship.y < -180 ||
+        ship.y > height + 180 ||
+        ship.life > ship.maxLife;
+
+      if (outside) ships.splice(i, 1);
+    }
+  }
+
   function drawRings() {
     const cx = width * (0.68 + (pointer.x - 0.5) * 0.04);
     const cy = height * (0.45 + (pointer.y - 0.5) * 0.04);
@@ -131,6 +236,7 @@
     drawRings();
     drawParticles();
     drawFilaments();
+    drawShips();
     requestAnimationFrame(animate);
   }
 
