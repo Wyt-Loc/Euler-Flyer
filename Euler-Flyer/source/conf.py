@@ -85,13 +85,9 @@ html_css_files = [
     'custom.css',
 ]
 
-# 自定义 JS（不蒜子访问统计）
+# 自定义 JS
 html_js_files = [
     'custom.js',
-    (
-        'https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js',
-        {'defer': 'defer'},
-    ),
 ]
 
 # ---------------------------------------------------------
@@ -148,6 +144,9 @@ html_theme_options = {
         "navbar-icon-links",
     ],
 
+    # 搜索框实时搜索
+    "search_as_you_type": True,
+    
     # -------------------------------------------------
     # TOC
     # -------------------------------------------------
