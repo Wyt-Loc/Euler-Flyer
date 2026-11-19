@@ -1,0 +1,8 @@
+{# Site-wide Google AdSense: inject into <head> on every page. #}
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+{{ super() }}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7961744057221404"
+     crossorigin="anonymous"></script>
+{% endblock %}
