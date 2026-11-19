@@ -80,6 +80,9 @@ html_favicon = "_static/favicon.ico"
 # 静态资源
 html_static_path = ['_static']
 
+# 复制到站点输出根目录（AdSense ads.txt → /ads.txt relative to version root）
+html_extra_path = ['_extra']
+
 # 自定义 CSS
 html_css_files = [
     'custom.css',
